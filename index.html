@@ -30,8 +30,45 @@
 
 <body>
 
-    <h2 class="text-7xl text-sky-500 font-bold text-center pt-50">Bismillah</h2>
+    <!-- Login -->
+    <section class="md:w-3/12 mx-auto border-base-300 rounded-box w-xs border p-5 my-10">
 
+        <div class="text-center space-y-2">
+            <span><img class="mx-auto mb-5" src="./assets/github-logo.png" alt=""></span>
+            <h2 class="font-bold text-2xl">GitHub Issues Tracker</h2>
+            <p class="text-gray-400">Sign in to manage your issues</p>
+        </div>
+
+        <fieldset class="fieldset mt-5">
+            <!-- <legend class="fieldset-legend">Login</legend> -->
+
+            <label class="label">Username</label>
+            <input id="username" type="email" class="input w-[100%]" placeholder="Username" />
+            <p class="text-[#4A00FF] mb-2">Default: admin</p>
+
+            <label class="label">Password</label>
+            <input id="password" type="password" class="input w-[100%]" placeholder="Enter Password" />
+            <p class="text-[#4A00FF] mb-2">Default: admin123</p>
+
+            <button id="login-btn" class="btn btn-primary mt-4">Login</button>
+        </fieldset>
+
+        <div class="flex items-center">
+            <div class="border h-0 w-[40%] border-gray-200"></div>
+            <h2 class="p-5">OR</h2>
+            <div class="border h-0 w-[40%] border-gray-200"></div>
+        </div>
+
+        <p class="text-center text-gray-400">Demo Credentials:</p>
+        <div class="bg-base-200 rounded-sm p-5 text-center">
+            <p><span class="font-bold">Username: </span>admin</p>
+            <p><span class="font-bold">Password: </span>admin123</p>
+        </div>
+
+    </section>
+    
+    <script src="./script/tamplate.js"></script>
+    <script src="./script/script.js"></script>
 </body>
 
 </html>
