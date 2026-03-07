@@ -37,7 +37,16 @@ const displayAll = (data) => {
         // status update
         let status = element.status;
         let open1='',close1='',open2='',close2='',border='';
-        
+        if(status=="open") {
+            open1='';
+            close1='hidden';
+            border='border-green-500';
+        }
+        else {
+            open2='hidden';
+            close2='';
+            border='border-[#A855F7]';
+        }
 
         
         
