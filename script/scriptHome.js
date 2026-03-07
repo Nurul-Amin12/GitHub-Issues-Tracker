@@ -79,7 +79,35 @@ const displayAll = (data) => {
         allBtn.append(cardDiv);
         
        
-        
+        // tag add 
+        const tag = document.createElement('div');
+        let str='';
+        element.labels.forEach( el =>{
+            
+            if(el=='bug'){
+                console.log('sfgs',el);
+                str += '<div class="px-3 py-2 rounded-full border bg-[#FEECEC] text-[#EF4444] gap-2 flex"><span><i class="fa-solid fa-bug"></i></span>Bug</div>';
+            } 
+            else if( el=='help wanted' ) {
+                str += '<div class="px-3 py-2 rounded-full border bg-[#FFF8DB] text-[#D97706] gap-2 flex"><span><i class="fa-regular fa-life-ring"></i></span>HELP WANTED</div>';
+            }
+            else if( el=='enhancement' ) {
+                str += '<div class="px-3 py-2 rounded-full border bg-[#cee9d2] text-[#37d906] gap-2 flex items-center"><span><i class="fa-solid fa-star"></i></span>Enhancement</div>';
+
+            }
+            else if( el=='good first issue' ) {
+                str += '<div class="px-3 py-2 rounded-full border bg-[#d5f1ee] text-[#06d9b2] gap-2 flex items-center"><span><i class="fa-solid fa-certificate"></i></span>GOOD FIRST ISSUE</div>';
+            }
+            else if( el=='documentation' ) {
+                str += '<div class="px-3 py-2 rounded-full border bg-[#dee3f1] text-[#0642d9] gap-2 flex items-center"><span><i class="fa-brands fa-files-pinwheel"></i></span>DOCUMENTATION</div>';   
+            }
+        })
+        console.log('tag',str);
+        tag.classList.add('flex','flex-wrap', 'gap-2')
+        tag.innerHTML = str;
+
+        const tagId = 'tag-'+element.id;
+        getElements(tagId).append(tag);
 
     });
 }
