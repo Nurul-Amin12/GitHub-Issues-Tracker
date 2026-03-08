@@ -77,38 +77,15 @@
                 </div>
             </div>
         </div>
+
+        <!-- spinner -->
+         <div id="spinner" class="flex justify-center items-center my-25 hidden">
+            <span class="loading loading-spinner loading-xl"></span>
+         </div>
     
         <!-- load label -->
         <div id="all-btn" class="p-5 rounded-sm grid grid-cols-1 md:grid-cols-4 gap-4">
             
-            <!-- <div class="card bg-base-100 shadow-md border-t-4 border-green-500">
-                <div class="card-body">
-                    <div class="flex justify-between items-center">
-                        <div class="flex">
-                            <img src="./assets/Open-Status.png">
-                            <img class="hidden" src="./assets/Closed- Status .png">
-                        </div>
-                        <div class="px-7 py-2 bg-base-200 rounded-full bg-[#FEECEC] text-[#EF4444] gap-2 flex">HIGH</div>
-                    </div>
-                    <div class="border-b-2 border-gray-300 space-y-2 py-5">
-                        <h2 class="card-title">Card Title</h2>
-                        <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-                        <div class="flex gap-4 flex-wrap">
-                            <div class="px-3 py-2 rounded-full border bg-[#FEECEC] text-[#EF4444] gap-2 flex items-center"><span><i class="fa-solid fa-bug"></i></span>Bug</div>
-                            <div class="px-3 py-2 rounded-full border bg-[#FFF8DB] text-[#D97706] gap-2 flex items-center"><span><i class="fa-regular fa-life-ring"></i></span>Help WANTED</div>
-                            <div class="px-3 py-2 rounded-full border bg-[#cee9d2] text-[#37d906] gap-2 flex items-center"><span><i class="fa-solid fa-star"></i></span>Enhancement</div>
-                            <div class="px-3 py-2 rounded-full border bg-[#d5f1ee] text-[#06d9b2] gap-2 flex items-center"><span><i class="fa-solid fa-certificate"></i></span>GOOD FIRST ISSUE</div>
-                            <div class="px-3 py-2 rounded-full border bg-[#f0def1] text-[#d906d9] gap-2 flex items-center"><span><i class="fa-brands fa-files-pinwheel"></i></span>DOCUMENTATION</div>
-                        </div>
-                    </div>
-                    <div class="space-y-3 pt-4">
-                        <p class="text-[#64748B]">#1 by john_doe</p>
-                        <p class="text-[#64748B]">1/15/2024</p>
-                    </div>
-                </div>
-                
-            </div> -->
-
         </div>
 
         <!-- load unavailable for search -->
@@ -120,41 +97,13 @@
         </div>
 
 
-        <!-- load spinner/modal -->
+        <!-- load Modal -->
          <!-- Open the modal using ID.showModal() method -->
-            <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
-            <dialog id="card_details" class="modal modal-bottom sm:modal-middle shadow-sm">
-                <div id="card-container" class="modal-box">
-                    <!-- <h3 class="text-lg font-bold mb-3">Hello!</h3>
-                    <div class="flex text-center items-center gap-2">
-                        <div class="px-6 py-1 rounded-full border bg-[#FEECEC] text-[#EF4444]">Bug</div>
-                        <div class=" text-[#64748B] items-center">-</div>
-                        <p class="text-[#64748B]">Opened by Fahim Ahmed</p>
-                        <div class=" text-[#64748B] items-center">-</div>
-                        <p class="text-[#64748B]">22/02/2026</p>
-                    </div>
-                    <div class="flex gap-4 flex-wrap my-6">
-                        <div class="px-3 py-2 rounded-full border bg-[#FEECEC] text-[#EF4444] gap-2 flex items-center"><span><i class="fa-solid fa-bug"></i></span>Bug</div>
-                        <div class="px-3 py-2 rounded-full border bg-[#FFF8DB] text-[#D97706] gap-2 flex items-center"><span><i class="fa-regular fa-life-ring"></i></span>Help WANTED</div>
-                    </div>
-                    <p class="">Press ESC key or click the button below to close</p>
-                    <div class="grid grid-cols-2 my-10 bg-base-200 p-5 rounded-sm">
-                        <div class="space-y-3">
-                            <p class="text-[#64748B]">Assignee:</p>
-                            <p class="font-bold">Fahim Ahmed</p>
-                        </div>
-                        <div class="space-y-3">
-                            <p class="text-[#64748B]">Priority</p>
-                            <div class="px-7 py-2 w-30 rounded-full bg-[#FEECEC] text-[#EF4444] text-center">HIGH</div>
-                        </div>
-                    </div>
-                    <div class="modal-action">
-                        <form method="dialog">
-                            <button class="btn btn-primary">Close</button>
-                        </form> -->
-                    </div>
-                </div>
-            </dialog>
+        <dialog id="card_details" class="modal modal-bottom sm:modal-middle shadow-sm">
+            <div id="card-container" class="modal-box">
+                
+            </div>
+        </dialog>
 
    </section>
 

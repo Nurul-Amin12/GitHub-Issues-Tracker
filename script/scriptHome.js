@@ -1,6 +1,8 @@
 
 // All section
 const loadAll = async()=>{
+    spinnerManage(true);
+
     const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues`;
     const res = await fetch(url);
     const json = await res.json();
@@ -9,6 +11,7 @@ const loadAll = async()=>{
 
 // Search section 
 const loadSearch = async(input) =>{
+    spinnerManage(true);
     const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${input}`;
     const res = await fetch(url);
     const json = await res.json();
@@ -20,6 +23,8 @@ const loadSearch = async(input) =>{
         allBtn.innerHTML = '';
 
         searchUnavailable.classList.remove('hidden');
+
+        spinnerManage(false)
     }
     else {
         searchUnavailable.classList.add('hidden');
@@ -30,12 +35,28 @@ const loadSearch = async(input) =>{
 
 // Modal section
 const cardDetails = async(id) => {
+    spinnerManage(true);
+
     const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
     const res = await fetch(url);
     const card = await res.json();
     displayDetails(card.data);
 }
 
+
+// Spinner
+const spinnerManage = (status) =>{
+    if( status===true ) {
+        getElements('spinner').classList.remove('hidden');
+        getElements('all-btn').classList.add('hidden');
+    }
+    else {
+        getElements('spinner').classList.add('hidden');
+        getElements('all-btn').classList.remove('hidden');
+    }
+}
+
+// Modal Display
 const displayDetails = (detail) =>{
     const container = getElements('card-container');
 
@@ -125,6 +146,8 @@ const displayDetails = (detail) =>{
     }
 
     getElements('card_details').showModal();
+
+    spinnerManage(false);
 }
 
 
@@ -271,7 +294,7 @@ const displayAll = (data) => {
             
             // card info added
             cardDiv.innerHTML = `
-                <div class="card bg-base-100 shadow-md border-t-4 ${border} h-full">
+                <div onclick="cardDetails(${element.id})" class="card bg-base-100 shadow-md border-t-4 ${border} h-full">
                     <div class="card-body">
                         <div class="flex justify-between items-center">
                             <div class="flex">
@@ -380,7 +403,7 @@ const displayAll = (data) => {
             
             // card info added
             cardDiv.innerHTML = `
-                <div class="card bg-base-100 shadow-md border-t-4 ${border} h-full">
+                <div onclick="cardDetails(${element.id})" class="card bg-base-100 shadow-md border-t-4 ${border} h-full">
                     <div class="card-body">
                         <div class="flex justify-between items-center">
                             <div class="flex">
@@ -490,7 +513,7 @@ const displayAll = (data) => {
             
             // card info added
             cardDiv.innerHTML = `
-                <div class="card bg-base-100 shadow-md border-t-4 ${border} h-full">
+                <div onclick="cardDetails(${element.id})" class="card bg-base-100 shadow-md border-t-4 ${border} h-full">
                     <div class="card-body">
                         <div class="flex justify-between items-center">
                             <div class="flex">
@@ -563,6 +586,7 @@ const displayAll = (data) => {
         };
     });
 
+    spinnerManage(false)
 };
 
 
