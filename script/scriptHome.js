@@ -1,4 +1,3 @@
-console.log('yes');
 
 // All section
 const loadAll = async()=>{
@@ -8,9 +7,29 @@ const loadAll = async()=>{
     displayAll(json.data);
 }
 
+// Search section 
+const loadSearch = async(input) =>{
+    const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${input}`;
+    const res = await fetch(url);
+    const json = await res.json();
+    
+    const searchUnavailable = getElements('search-unavailable');
+    if( json.data.length ===0 ) {
+        // get the container & empty it
+        const allBtn = getElements('all-btn'); 
+        allBtn.innerHTML = '';
+
+        searchUnavailable.classList.remove('hidden');
+    }
+    else {
+        searchUnavailable.classList.add('hidden');
+        displayAll(json.data);
+    }
+}
+
+
 //  display all card
 const displayAll = (data) => {
-    console.log(data);
 
     // label background manage
     getElements('label-all').classList.add('bg-[#422ad5]', 'text-white');
@@ -70,7 +89,9 @@ const displayAll = (data) => {
         `;
 
         allBtn.append(cardDiv);
-        
+
+        // Update total issues
+        getElements('total-issues').innerText = allBtn.children.length;
        
         // tag add 
         const tag = document.createElement('div');
@@ -113,8 +134,9 @@ const displayAll = (data) => {
         }
 
     };
-
-
+ 
+    
+    
     // const labelStatus = 'all';
     getElements('label-all').addEventListener('click',()=>{
         // label background manage
@@ -176,6 +198,8 @@ const displayAll = (data) => {
 
             allBtn.append(cardDiv);
             
+            // Update total issues
+            getElements('total-issues').innerText = allBtn.children.length;
         
             // tag add 
             const tag = document.createElement('div');
@@ -236,7 +260,6 @@ const displayAll = (data) => {
         for(let element of data) {
             
             let status = element.status;
-            console.log(status,'stree');
             if(status=='closed' ) continue;
             // data.forEach(element => {
             const cardDiv = document.createElement('div');
@@ -283,6 +306,9 @@ const displayAll = (data) => {
             `;
 
             allBtn.append(cardDiv);
+
+            // Update total issues
+            getElements('total-issues').innerText = allBtn.children.length;
             
         
             // tag add 
@@ -344,7 +370,6 @@ const displayAll = (data) => {
         for(let element of data) {
             
             let status = element.status;
-            console.log(status,'stree');
             if(status=='open' ) continue;
             // data.forEach(element => {
             const cardDiv = document.createElement('div');
@@ -392,7 +417,9 @@ const displayAll = (data) => {
 
             allBtn.append(cardDiv);
             
-        
+            // Update total issues
+            getElements('total-issues').innerText = allBtn.children.length;
+            
             // tag add 
             const tag = document.createElement('div');
             let str='';
@@ -438,4 +465,12 @@ const displayAll = (data) => {
 
 };
 
-loadAll();
+
+// Search elements 
+getElements('search-btn').addEventListener('click',()=>{
+    const searchInput=getElements('search-input').value;
+    if(searchInput.length===0) loadAll();
+    else loadSearch(searchInput);
+});
+
+// loadAll();
