@@ -17,11 +17,12 @@ const loadSearch = async(input) =>{
     const json = await res.json();
 
     const searchUnavailable = getElements('search-unavailable');
-    if( json.data.length ===0 ) {
+    if( json.data.length === 0 ) {
         // get the container & empty it
         const allBtn = getElements('all-btn'); 
         allBtn.innerHTML = '';
-
+        // Update total issues
+        getElements('total-issues').innerText = '0';
         searchUnavailable.classList.remove('hidden');
 
         spinnerManage(false)
@@ -66,7 +67,9 @@ const displayDetails = (detail) =>{
     const formatted = parts.map(word => 
         word.charAt(0).toUpperCase() + word.slice(1)
     );
-    const Assignee = formatted.join(" ");
+
+    let Assignee = formatted.join(" ");
+    if( Assignee.length===0 ) Assignee='Unknown';
 
     // date formate
     const isoDate = detail.updatedAt;
@@ -183,6 +186,9 @@ const displayAll = (data) => {
             // if(labelStatus!=='closed' && labelStatus!=='all') continue;
         }
 
+        // date formate
+        const isoDate = element.updatedAt;
+        const date = `${isoDate.slice(8, 10)}/${isoDate.slice(5, 7)}/${isoDate.slice(0, 4)}`;
         
         // card info added
         cardDiv.innerHTML = `
@@ -204,7 +210,7 @@ const displayAll = (data) => {
                     </div>
                     <div class="space-y-3 pt-4">
                         <p class="text-[#64748B]">#1 ${element.author}</p>
-                        <p class="text-[#64748B]">${element.createdAt.slice(0,10)}</p>
+                        <p class="text-[#64748B]">${date}</p>
                     </div>
                 </div>
                 
@@ -260,7 +266,7 @@ const displayAll = (data) => {
  
     
     
-    // const labelStatus = 'all';
+// const labelStatus = 'all';
     getElements('label-all').addEventListener('click',()=>{
         // label background manage
         getElements('label-all').classList.add('bg-[#422ad5]', 'text-white');
@@ -291,7 +297,10 @@ const displayAll = (data) => {
                 border='border-[#A855F7]';
             }
 
-            
+            // date formate
+            const isoDate = element.updatedAt;
+            const date = `${isoDate.slice(8, 10)}/${isoDate.slice(5, 7)}/${isoDate.slice(0, 4)}`;
+
             // card info added
             cardDiv.innerHTML = `
                 <div onclick="cardDetails(${element.id})" class="card bg-base-100 shadow-md border-t-4 ${border} h-full">
@@ -312,7 +321,7 @@ const displayAll = (data) => {
                         </div>
                         <div class="space-y-3 pt-4">
                             <p class="text-[#64748B]">#1 ${element.author}</p>
-                            <p class="text-[#64748B]">${element.createdAt.slice(0,10)}</p>
+                            <p class="text-[#64748B]">${date}</p>
                         </div>
                     </div>
                     
@@ -321,8 +330,6 @@ const displayAll = (data) => {
 
             allBtn.append(cardDiv);
             
-            // Update total issues
-            getElements('total-issues').innerText = allBtn.children.length;
         
             // tag add 
             const tag = document.createElement('div');
@@ -365,9 +372,12 @@ const displayAll = (data) => {
             }
 
         };
+
+        // Update total issues
+        getElements('total-issues').innerText = allBtn.children.length;
     });
 
-    // const labelStatus = 'open';
+// const labelStatus = 'open';
     getElements('label-open').addEventListener('click',()=>{
         // label background manage
         getElements('label-all').classList.remove('bg-[#422ad5]', 'text-white');
@@ -377,7 +387,7 @@ const displayAll = (data) => {
         // get the container & empty it
         const allBtn = getElements('all-btn'); 
         allBtn.innerHTML = '';
-        
+
 
         // travel to all card
         for(let element of data) {
@@ -400,6 +410,9 @@ const displayAll = (data) => {
                 border='border-[#A855F7]';
             }
 
+            // date formate
+            const isoDate = element.updatedAt;
+            const date = `${isoDate.slice(8, 10)}/${isoDate.slice(5, 7)}/${isoDate.slice(0, 4)}`;
             
             // card info added
             cardDiv.innerHTML = `
@@ -421,7 +434,7 @@ const displayAll = (data) => {
                         </div>
                         <div class="space-y-3 pt-4">
                             <p class="text-[#64748B]">#1 ${element.author}</p>
-                            <p class="text-[#64748B]">${element.createdAt.slice(0,10)}</p>
+                            <p class="text-[#64748B]">${date}</p>
                         </div>
                     </div>
                     
@@ -430,9 +443,6 @@ const displayAll = (data) => {
 
             allBtn.append(cardDiv);
 
-            // Update total issues
-            getElements('total-issues').innerText = allBtn.children.length;
-            
         
             // tag add 
             const tag = document.createElement('div');
@@ -475,9 +485,11 @@ const displayAll = (data) => {
             }
 
         };
+        // Update total issues
+        getElements('total-issues').innerText = allBtn.children.length;
     });
 
-    // const labelStatus = 'close';
+// const labelStatus = 'close';
     getElements('label-close').addEventListener('click',()=>{
         // label background manage
         getElements('label-all').classList.remove('bg-[#422ad5]', 'text-white');
@@ -510,7 +522,10 @@ const displayAll = (data) => {
                 border='border-[#A855F7]';
             }
 
-            
+            // date formate
+            const isoDate = element.updatedAt;
+            const date = `${isoDate.slice(8, 10)}/${isoDate.slice(5, 7)}/${isoDate.slice(0, 4)}`;
+
             // card info added
             cardDiv.innerHTML = `
                 <div onclick="cardDetails(${element.id})" class="card bg-base-100 shadow-md border-t-4 ${border} h-full">
@@ -531,7 +546,7 @@ const displayAll = (data) => {
                         </div>
                         <div class="space-y-3 pt-4">
                             <p class="text-[#64748B]">#1 ${element.author}</p>
-                            <p class="text-[#64748B]">${element.createdAt.slice(0,10)}</p>
+                            <p class="text-[#64748B]">${date}</p>
                         </div>
                     </div>
                     
@@ -539,9 +554,7 @@ const displayAll = (data) => {
             `;
 
             allBtn.append(cardDiv);
-            
-            // Update total issues
-            getElements('total-issues').innerText = allBtn.children.length;
+
             
             // tag add 
             const tag = document.createElement('div');
@@ -584,6 +597,8 @@ const displayAll = (data) => {
             }
 
         };
+        // Update total issues
+        getElements('total-issues').innerText = allBtn.children.length;
     });
 
     spinnerManage(false)
@@ -594,7 +609,10 @@ const displayAll = (data) => {
 getElements('search-btn').addEventListener('click',()=>{
     const searchInput=getElements('search-input').value;
     if(searchInput.length===0) loadAll();
-    else loadSearch(searchInput);
+    else { 
+        loadAll(); 
+        loadSearch(searchInput); 
+    }
 });
 
 loadAll();
